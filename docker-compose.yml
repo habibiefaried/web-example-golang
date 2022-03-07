@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  web:
+    build: ./web-golang
+    image: web-golang:v0.1.1
+    ports:
+    - "8080:8080"
