@@ -6,6 +6,6 @@ COPY . .
 
 run go build -o web-golang
 
-EXPOSE 8888
+EXPOSE 8080
 
 CMD ./web-golang
