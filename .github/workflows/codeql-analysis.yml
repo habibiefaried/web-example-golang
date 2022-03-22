@@ -3,33 +3,18 @@ name: "Code scanning - Action"
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   codeql-build:
     runs-on: ubuntu-latest
-    
-    permissions:
-      security-events: write
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-      
-      - name: Initialized CodeQL
-        uses: github/codeql-action/init@v1
-        with:
-          languages: go, javascript
-        
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v1
-
-      - run: |
-          make bootstrap
-          make release
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v1
+        uses: rcowsill/workflow-scan-action@v1
