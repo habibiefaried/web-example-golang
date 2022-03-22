@@ -15,6 +15,11 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+      
+      - name: Initialized CodeQL
+        uses: github/codeql-action/init@v1
+        with:
+          languages: go, javascript
 
       - name: Perform CodeQL Analysis
-        uses: rcowsill/workflow-scan-action@v1
+        uses: github/codeql-action/analyze@v1
