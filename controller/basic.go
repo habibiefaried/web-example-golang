@@ -24,7 +24,6 @@ func Basic() {
 	http.HandleFunc("/about", func(w http.ResponseWriter, r *http.Request) {
 		data := make(map[string]interface{})
 		data["name"] = "Superman"
-		data["key"] = "password123"
 
 		err = tmpl.ExecuteTemplate(w, "about", data)
 		if err != nil {
