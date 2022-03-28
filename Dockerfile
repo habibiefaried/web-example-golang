@@ -13,4 +13,3 @@ RUN go build -o /my-web-app
 EXPOSE 8080
 
 CMD ["/my-web-app"]
-
