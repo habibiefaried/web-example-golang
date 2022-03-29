@@ -19,7 +19,7 @@ jobs:
     - name: build local container
       uses: docker/build-push-action@v2
       with:
-        tags: "my-web-app:latest
+        tags: "my-web-app:latest"
         push: false
         load: true
 
