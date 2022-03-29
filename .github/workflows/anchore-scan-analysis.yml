@@ -19,11 +19,11 @@ jobs:
     - name: build local container
       uses: docker/build-push-action@v2
       with:
-        tags: web-example-golang_my-web-app:latest
+        tags: "my-web-app:latest
         push: false
         load: true
 
     - name: Scan image
       uses: anchore/scan-action@v3
       with:
-        image: "web-example-golang_my-web-app:latest"
+        image: "my-web-app:latest"
