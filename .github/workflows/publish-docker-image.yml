@@ -29,5 +29,3 @@ jobs:
             ls -lah
             docker rm -f vulnapp-goapp && docker rmi cuncis1st/vulnerability-goapp:latest
             docker-compose up -d
-
-          
