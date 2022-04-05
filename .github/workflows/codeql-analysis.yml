@@ -1,0 +1,25 @@
+name: "Code scanning - Action"
+
+on:
+  push:
+    branches:
+      - main2
+  pull_request:
+    branches:
+      - main2
+
+jobs:
+  codeql-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      - name: Initialized CodeQL
+        uses: github/codeql-action/init@v1
+        with:
+          languages: go, javascript
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
