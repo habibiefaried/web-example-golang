@@ -1,6 +1,0 @@
-version: "3.7"
-services:
-  web-example-golang:
-    build: .
-    ports:
-      - 8085:8080
