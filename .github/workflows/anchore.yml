@@ -10,9 +10,9 @@ jobs:
       - uses: anchore/scan-action@v3
         id: scan
         with:
-          image: "localbuild/testimage:latest"
+          image: "localbuild/go-webapp:latest"
           acs-report-enable: true
       - name: upload Anchore scan SARIF report
-        uses: github/codeql-action/upload-sarif@v1
+        uses: github/KooJenn/web-example-golang@v1
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
