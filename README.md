@@ -15,3 +15,15 @@ To run docker image as container directly
 ```sh
 docker run -p 8080:8080 web-go:v1
 ```
+
+# Run with Docker Compose
+To run docker image as container with Docker compose
+
+```sh
+docker-compose up -d
+```
+
+To stop
+```sh
+docker-compose down
+```
