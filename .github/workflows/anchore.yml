@@ -1,9 +1,14 @@
 name: Container Image CI
 on:
   push:
-    branches: [ master ]
+    branches:
+    - master
+    - staging
   pull_request:
-    branches: [ master ]
+    branches:
+    - master
+    - staging
+    
 jobs:
   build:
     runs-on: ubuntu-latest
