@@ -13,6 +13,6 @@ jobs:
           image: "localbuild/go-webapp:latest"
           acs-report-enable: true
       - name: upload Anchore scan SARIF report
-        uses: github/KooJenn/web-example-golang
+        uses: github/KooJenn/web-example-golang@v1
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
