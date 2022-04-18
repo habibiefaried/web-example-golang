@@ -1,0 +1,1 @@
+file ini ada isinya buat ngetest codeql
