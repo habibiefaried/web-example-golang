@@ -2,4 +2,4 @@ name: Auto commit
 on:
   push:
     branches:
-      - master
+      - main
