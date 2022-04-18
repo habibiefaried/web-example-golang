@@ -1,16 +1,11 @@
-FROM golang:1.15-alpine AS builder
+FROM golang:1.15.3-alpine3.12
 
 WORKDIR /app
 
 COPY . .
 
-RUN go build -o main main.go
-
-# Run stage
-FROM alpine
-WORKDIR /app
-COPY --from=builder /app/main .
+RUN go build -o /app/myweb
 
 EXPOSE 8080
 
-CMD [ "/app/main" ]
+CMD ["/app/myweb"]
