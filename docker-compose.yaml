@@ -1,0 +1,7 @@
+version: "3.9"
+
+services:
+  webjin:
+    build: .
+    ports:
+      - 127.0.0.1:8082:8080
