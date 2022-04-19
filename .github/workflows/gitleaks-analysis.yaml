@@ -1,12 +1,6 @@
 name: gitleaks
 
-on:
-  push:
-    branches:
-      - main, Staging
-  pull_request:
-    branches:
-      - main
+on: [push,pull_request]
 
 jobs:
   gitleaks:
