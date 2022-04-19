@@ -3,7 +3,7 @@ name: "CodeQL"
 on:
   push:
   # old branch name is master and the new one is main.
-    branches: [ main ]
+    branches: [ main, Master, Staging ]
   pull_request:
     branches: [ main ]
  
