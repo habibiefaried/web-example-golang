@@ -16,7 +16,7 @@ jobs:
         run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
           docker build . -t koojenn/go-webapp
-          docker push koojenn/go-webapp:$(date +%s)
+          docker push koojenn/go-webapp:latest
 
       # https://github.com/appleboy/ssh-action
       - name: Deploy docker
@@ -29,5 +29,5 @@ jobs:
           script: |
             cd /home/kucing/Vulnerability-goapp
             ls -lah
-            docker rm -f go-webapp && docker rmi koojenn/go-webapp:$(date +%s)
+            docker rm -f go-webapp && docker rmi koojenn/go-webapp:latest
             docker-compose -f docker-compose.yml up -d
