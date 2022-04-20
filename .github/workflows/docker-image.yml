@@ -1,25 +1,33 @@
-name: Docker Image CI
+name: Publish Docker image
 
 on:
   push:
-    branches: [master]
+    branches: [ master ]
 
 jobs:
-
-  build:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: docker login
-      env:
-        DOCKER_USER: ${{secrets.DOCKER_USER}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      run:
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-        
-    - name: Build docker Image
-      run: docker build . --file Dockerfile --tag koojenn/node-test:$(date +%s)
+      - name: Check out the repo
+        uses: actions/checkout@v2
       
-    - name: Docker Push
-      run: docker push ${{secrets.DOCKER_USER}}/koojenn
+      - name: Publish Docker image
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+          docker build . -t koojenn/go-webapp
+          docker push koojenn/go-webapp:$(date +%s)
+
+      # https://github.com/appleboy/ssh-action
+      - name: Deploy docker
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd /home/kucing/Vulnerability-goapp
+            ls -lah
+            docker rm -f go-webapp && docker rmi koojenn/go-webapp:$(date +%s)
+            docker-compose -f docker-compose.yml up -d
