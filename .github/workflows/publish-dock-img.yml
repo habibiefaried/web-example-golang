@@ -27,6 +27,7 @@ jobs:
           script: |
             cd /home/ronald/web-example-golang
             ls -lah
-            sudo docker rm -f web-go && sudo docker rmi maduasli/vulnerability-goapp:latest
+            sudo docker-compose down
+            sudo docker rm -f web-example-golang_myweb_1 && sudo docker rmi maduasli/vulnerability-goapp:latest
             sudo docker-compose up -d
 
