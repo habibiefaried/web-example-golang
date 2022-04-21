@@ -14,7 +14,7 @@ jobs:
       
       - name: Publish Docker image
         run: |
-          echo "${{ secrets.DOCKER_HUB_ACCESS_TOKEN}}" | docker login --username "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+          echo "${{ secrets.DOCKER_HUB_ACCESS_TOKEN}}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
         #uses: docker/login-action@v1
         #with:
         #  username: ${{ secrets.DOCKER_HUB_USERNAME }}
@@ -33,4 +33,3 @@ jobs:
             ls -lah
             docker rm -f vulnapp-goapp && docker rmi maduasli/vulnerability-goapp:latest
             docker-compose up -d
-
