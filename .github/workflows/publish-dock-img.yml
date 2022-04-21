@@ -15,7 +15,7 @@ jobs:
       - name: Publish Docker image
         run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-          docker build . -t cuncis1st/vulnerability-goapp
+          docker build . -t maduasli/vulnerability-goapp
           docker push maduasli/vulnerability-goapp:latest
       - name: Deploy docker
         uses: appleboy/ssh-action@master
