@@ -1,4 +1,4 @@
-name: gitleaks
+name: "Scanning Secret Keys Gitleaks"
 
 on:
   push:
@@ -7,7 +7,8 @@ on:
        - Staging
   pull_request:
     branches: 
-       - main  
+       - main
+       - staging  
  
 
 jobs:
