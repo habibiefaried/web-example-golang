@@ -5,6 +5,8 @@ on:
     branches:
        - main
        - staging
+  pull_request:
+       - main
 
 jobs:
   push_to_registry:
