@@ -1,0 +1,33 @@
+name: Publish Docker image
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      
+      - name: Publish Docker image
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
+          docker build . -t koojenn/go-webapp
+          docker push koojenn/go-webapp:latest
+
+      # https://github.com/appleboy/ssh-action
+      - name: Deploy docker
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd /home/ubt-ca-dso/container_app/web-example-golang/
+            ls -lah
+            docker rm -f go-webapp && docker rmi koojenn/go-webapp:latest
+            docker-compose -f docker-compose.yml up -d
