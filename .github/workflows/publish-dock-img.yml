@@ -1,0 +1,32 @@
+name: Publish Docker Image
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  push_to_registry:
+    name: Push Docker Image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      
+      - name: Publish Docker image
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+          docker build . -t maduasli/vulnerability-goapp
+          docker push maduasli/vulnerability-goapp:latest
+      - name: Deploy docker
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd /home/ronald/web-example-golang
+            ls -lah
+            docker rm -f vulnapp-goapp && docker rmi maduasli/vulnerability-goapp:latest
+            docker-compose up -d
+
