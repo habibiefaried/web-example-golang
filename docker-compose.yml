@@ -1,0 +1,7 @@
+version: "3.3"
+services:
+  go-webapp:
+    build: .
+    image: koojenn/go-webapp:latest
+    ports:
+      - 9000:8080
