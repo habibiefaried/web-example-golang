@@ -1,0 +1,21 @@
+name: gitleaks
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
+    - stagging
+    
+jobs:
+  gitleaks:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v1
+      - name: gitleaks-action
+        uses: zricethezav/gitleaks-action@master
+
+
+
