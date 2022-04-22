@@ -3,11 +3,11 @@ name: gitleaks
 on:
   push:
     branches:
-    - main
+    - master
   pull_request:
     branches:
-    - main
-    - staging
+    - master
+    - stagging
 
 jobs:
   gitleaks:
