@@ -35,4 +35,4 @@ jobs:
             cd /home/ubuntu/Desktop/CA/web-example-golang
             ls -lah
             docker rm -f web-example-golang && docker rmi rifkinugraha/web-example-golang:latest
-            docker-compose -f docker-compose up -d
+            docker-compose -f docker-compose.yml up -d
