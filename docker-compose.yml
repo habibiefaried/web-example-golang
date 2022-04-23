@@ -1,0 +1,7 @@
+version: "3.9"
+
+services:
+   tugas-kecil-2:
+     build: .
+     ports:
+       - 8083:80
