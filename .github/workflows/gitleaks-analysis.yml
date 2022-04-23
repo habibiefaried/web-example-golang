@@ -1,8 +1,9 @@
-name: "gitleaks"
+name: "Gitleaks"
 
 on:
   push:
     branches: [ master ]
+    branches: [ staging ]
   pull_request:
     branches: [ master ]
 
