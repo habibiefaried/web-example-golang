@@ -1,0 +1,11 @@
+version: "3.0"
+
+services:
+  webdevsecops:
+    build: .
+    working_dir: /usr/share/nginx/html
+    ports:
+      - 8088:80
+    volumes:
+      - ./src:/usr/share/nginx/html
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
