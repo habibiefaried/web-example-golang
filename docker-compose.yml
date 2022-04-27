@@ -1,0 +1,9 @@
+version: "3.0"
+
+services:
+        web_golang:
+                build: .
+                working_dir: /opt
+                ports:
+                        - 8054:80
+~                                                                                                                       ~                                             
