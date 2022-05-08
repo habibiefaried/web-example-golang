@@ -1,0 +1,45 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+name: Publish Docker image
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+=======
+ main
+      - name: Publish Docker image
+        run: |
+          echo "${{ secrets.DOCKERHUBTOKEN }}" | docker login -u "${{ secrets.DOCKERHUBNAME }}" --password-stdin
+          docker build . -t ululak/web-example-golang
+          docker push ululak/web-example-golang:latest
+
+
+=======
+      # https://github.com/appleboy/ssh-action
+      - name: Deploy docker
+        uses: appleboy/ssh-action@master
+ main
+        with:
+          host: ${{ secrets.VMHOSTSSH }}
+          username: ${{ secrets.VMSSH }}
+          password: ${{ secrets.VMSSHPASS }}
+          port: ${{ secrets.VMSSHPORT }}
+          script: |
+
+ 366bf70696585e38617ff136612c9954fd3ac750
+=======
+            cd /home/jinubuntu/devsecop/web-example-golang
+            ls -lah
+            docker-compose up -d
+ main
